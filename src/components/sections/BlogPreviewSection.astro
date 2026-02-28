@@ -1,19 +1,20 @@
 ---
-import Container from '../layout/Container.astro';
-import SectionWrapper from '../layout/SectionWrapper.astro';
-import SectionTitle from '../ui/SectionTitle.astro';
-import Card from '../ui/Card.astro';
-import Badge from '../ui/Badge.astro';
-import productsData from '../../data/products.json';
+import Container from "../layout/Container.astro";
+import SectionWrapper from "../layout/SectionWrapper.astro";
+import SectionTitle from "../ui/SectionTitle.astro";
+import Card from "../ui/Card.astro";
+import Badge from "../ui/Badge.astro";
+import productsData from "../../data/products.json";
 
 const products = productsData.slice(0, 3);
+const PHONE = "";
 ---
 
 <SectionWrapper id="products-preview" bg="white">
   <Container>
     <div class="blog-header">
-      <SectionTitle 
-        title="Productos Destacados" 
+      <SectionTitle
+        title="Productos Destacados"
         subtitle="Nuestro Catálogo"
         alignment="left"
       />
@@ -21,29 +22,45 @@ const products = productsData.slice(0, 3);
     </div>
 
     <div class="blog-grid">
-      {products.map(product => (
-        <Card interactive class="blog-card">
-          {product.images && product.images[0] ? (
-            <img src={product.images[0]} alt={product.name} class="blog-image" />
-          ) : (
-            <div class="blog-image-placeholder bg-muted"></div>
-          )}
-          <div class="blog-content">
-            <div class="blog-meta">
-              {product.tags && product.tags.length > 0 ? (
-                <Badge label={product.tags[0]} />
-              ) : (
-                <div></div>
-              )}
-              <span class="blog-date">{product.variants && product.variants[0] ? product.variants[0].size : ''}</span>
+      {
+        products.map((product) => (
+          <Card interactive class="blog-card">
+            {product.images && product.images[0] ? (
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                class="blog-image"
+              />
+            ) : (
+              <div class="bg-muted blog-image-placeholder" />
+            )}
+            <div class="blog-content">
+              <div class="blog-meta">
+                {product.tags && product.tags.length > 0 ? (
+                  <Badge label={product.tags[0]} />
+                ) : (
+                  <div />
+                )}
+                <span class="blog-date">
+                  {product.variants && product.variants[0]
+                    ? product.variants[0].size
+                    : ""}
+                </span>
+              </div>
+              <h3 class="blog-title">
+                <a
+                  href={`https://wa.me/${PHONE}?text=${encodeURIComponent(`Hola, solicito información de: ${product.name}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {product.name}
+                </a>
+              </h3>
+              <p class="blog-excerpt">{product.subtitle}</p>
             </div>
-            <h3 class="blog-title">
-              <a href={`/productos/${product.id}`}>{product.name}</a>
-            </h3>
-            <p class="blog-excerpt">{product.subtitle}</p>
-          </div>
-        </Card>
-      ))}
+          </Card>
+        ))
+      }
     </div>
   </Container>
 </SectionWrapper>
@@ -113,10 +130,17 @@ const products = productsData.slice(0, 3);
     object-fit: cover;
     border-bottom: 1px solid var(--color-border);
   }
-  
-  .bg-primary { background-color: var(--color-primary); opacity: 0.8; }
-  .bg-secondary { background-color: var(--color-secondary); }
-  .bg-muted { background-color: var(--color-border); }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+    opacity: 0.8;
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-muted {
+    background-color: var(--color-border);
+  }
 
   .blog-content {
     padding: var(--space-lg);
