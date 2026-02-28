@@ -4,60 +4,43 @@ import SectionWrapper from '../layout/SectionWrapper.astro';
 import SectionTitle from '../ui/SectionTitle.astro';
 import Card from '../ui/Card.astro';
 import Badge from '../ui/Badge.astro';
+import productsData from '../../data/products.json';
 
-// Placeholder blog data
-const BLOG_POSTS = [
-  {
-    id: 1,
-    title: '5 Posturas de Yoga Matutinas para Arrancar tu Día',
-    category: 'Yoga',
-    date: 'Oct 12, 2023',
-    image: 'bg-primary',
-    excerpt: 'Activá tu metabolismo y despertá la mente con estas simples rutinas para la mañana.'
-  },
-  {
-    id: 2,
-    title: 'Entendiendo el Mindfulness en medio del Caos',
-    category: 'Meditación',
-    date: 'Oct 05, 2023',
-    image: 'bg-secondary',
-    excerpt: 'Cómo mantener los pies sobre la tierra cuando sentís que todo a tu alrededor es un torbellino.'
-  },
-  {
-    id: 3,
-    title: 'El Equilibrio entre Nutrición y Fluir',
-    category: 'Bienestar',
-    date: 'Sep 28, 2023',
-    image: 'bg-muted',
-    excerpt: 'Comer bien complementa perfecto tu práctica física. Acá tenés las prioridades.'
-  }
-];
+const products = productsData.slice(0, 3);
 ---
 
-<SectionWrapper id="blog" bg="white">
+<SectionWrapper id="products-preview" bg="white">
   <Container>
     <div class="blog-header">
       <SectionTitle 
-        title="Historias y Reflexiones" 
-        subtitle="Desde el Blog"
+        title="Productos Destacados" 
+        subtitle="Nuestro Catálogo"
         alignment="left"
       />
-      <a href="/blog" class="view-all">Ver todas las notas &rarr;</a>
+      <a href="/productos" class="view-all">Ver todos los productos &rarr;</a>
     </div>
 
     <div class="blog-grid">
-      {BLOG_POSTS.map(post => (
+      {products.map(product => (
         <Card interactive class="blog-card">
-          <div class={`blog-image-placeholder ${post.image}`}></div>
+          {product.images && product.images[0] ? (
+            <img src={product.images[0]} alt={product.name} class="blog-image" />
+          ) : (
+            <div class="blog-image-placeholder bg-muted"></div>
+          )}
           <div class="blog-content">
             <div class="blog-meta">
-              <Badge label={post.category} />
-              <span class="blog-date">{post.date}</span>
+              {product.tags && product.tags.length > 0 ? (
+                <Badge label={product.tags[0]} />
+              ) : (
+                <div></div>
+              )}
+              <span class="blog-date">{product.variants && product.variants[0] ? product.variants[0].size : ''}</span>
             </div>
             <h3 class="blog-title">
-              <a href={`/blog/${post.id}`}>{post.title}</a>
+              <a href={`/productos/${product.id}`}>{product.name}</a>
             </h3>
-            <p class="blog-excerpt">{post.excerpt}</p>
+            <p class="blog-excerpt">{product.subtitle}</p>
           </div>
         </Card>
       ))}
@@ -121,6 +104,13 @@ const BLOG_POSTS = [
   .blog-image-placeholder {
     width: 100%;
     aspect-ratio: 16/9;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .blog-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
     border-bottom: 1px solid var(--color-border);
   }
   

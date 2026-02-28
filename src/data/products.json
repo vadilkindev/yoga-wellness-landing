@@ -55,8 +55,11 @@
             }
         ],
         "images": [
-            "",
-            ""
+            "/assets/images/products/crema-humectante-1.jpg",
+            "/assets/images/products/crema-humectante-2.jpg",
+            "/assets/images/products/crema-humectante-3.jpg",
+            "/assets/images/products/crema-humectante-4.jpg",
+            "/assets/images/products/crema-humectante-5.jpg"
         ],
         "documents": {
             "fichaTecnica": "/assets/docs/ficha-tecnica-lavanda.pdf"
@@ -85,8 +88,11 @@
             }
         ],
         "images": [
-            "",
-            ""
+            "/assets/images/products/aceite-lavanda-1.jpg",
+            "/assets/images/products/aceite-lavanda-2.jpg",
+            "/assets/images/products/aceite-lavanda-3.jpg",
+            "/assets/images/products/aceite-lavanda-4.jpg",
+            "/assets/images/products/aceite-lavanda-5.jpg"
         ],
         "documents": {
             "fichaTecnica": "/assets/docs/ficha-tecnica-lavanda.pdf"
