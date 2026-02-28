@@ -1,35 +1,35 @@
 import type { NavItem, ServiceItem, FeatureItem } from '../types';
 
 export const NAV_LINKS: NavItem[] = [
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Services', href: '#services' },
-    { label: 'About Me', href: '#about' },
-    { label: 'Book Now', href: '#booking' },
+    { label: 'Precios', href: '#pricing' },
+    { label: 'Servicios', href: '#services' },
+    { label: 'Sobre mí', href: '#about' },
+    { label: 'Reservá', href: '#booking' },
 ];
 
 export const SERVICES: ServiceItem[] = [
     {
         id: 's1',
-        title: 'Yoga Class',
-        description: 'A gentle and restorative yoga practice designed to help you relax, release tension, and reconnect with your body.',
+        title: 'Clase de Yoga',
+        description: 'Una práctica suave y restaurativa pensada para ayudarte a relajar, soltar tensiones y reconectar con vos misma.',
         icon: '🧘‍♀️'
     },
     {
         id: 's2',
-        title: 'Yoga Retreat',
-        description: 'Immerse yourself in a transformative experience that combines yoga, meditation, and holistic wellness.',
+        title: 'Retiro de Yoga',
+        description: 'Sumergite en una experiencia transformadora que combina yoga, meditación y bienestar integral.',
         icon: '🌴'
     },
     {
         id: 's3',
-        title: 'Meditation Session',
-        description: 'Guided meditation practices to cultivate mindfulness, reduce stress, and promote mental clarity.',
+        title: 'Sesión de Meditación',
+        description: 'Prácticas de meditación guiada para cultivar la atención plena, bajar el estrés y encontrar claridad mental.',
         icon: '🧘‍♂️'
     },
     {
         id: 's4',
-        title: 'Personal Coaching',
-        description: 'One-on-one sessions tailored to your specific needs, focusing on personal growth and goal achievement.',
+        title: 'Coaching Personal',
+        description: 'Sesiones personalizadas adaptadas a lo que necesitás, enfocadas en tu crecimiento personal y en lograr tus metas.',
         icon: '🎯'
     }
 ];
@@ -37,17 +37,17 @@ export const SERVICES: ServiceItem[] = [
 export const FEATURES: FeatureItem[] = [
     {
         id: 'f1',
-        title: 'Grow',
-        description: 'Develop new skills and expand your capacity for personal and professional growth.'
+        title: 'Crecer',
+        description: 'Desarrollá nuevas habilidades y expandí tu capacidad para crecer tanto personal como profesionalmente.'
     },
     {
         id: 'f2',
-        title: 'Flow',
-        description: 'Find your rhythm and cultivate a state of flow in your daily activities and creative pursuits.'
+        title: 'Fluir',
+        description: 'Encontrá tu propio ritmo y cultivá un estado de fluidez en tus rutinas diarias y creativas.'
     },
     {
         id: 'f3',
-        title: 'Glow',
-        description: 'Radiate health and vitality with practices that nourish your body, mind, and spirit.'
+        title: 'Brillar',
+        description: 'Irradiá salud y vitalidad con prácticas que nutren de verdad tu cuerpo, mente y espíritu.'
     }
 ];

@@ -11,35 +11,35 @@ import Input from '../ui/Input.astro';
     <div class="booking-container">
       <div class="booking-content">
         <SectionTitle 
-          title="Book A Session" 
-          subtitle="Ready to start?"
+          title="Reservá una Sesión" 
+          subtitle="¿Lista para arrancar?"
         />
         <p class="booking-description">
-          Whether you're looking for private classes, retreats, or coaching consultations, 
-          let's find the perfect time to connect. Fill out the form below.
+          Ya sea que busques clases privadas, retiros o coaching personalizado, 
+          encontremos el momento ideal para conectar. Llená el formulario acá abajo.
         </p>
       </div>
 
       <div class="booking-form-wrapper">
         <form class="booking-form" onsubmit="event.preventDefault();">
           <div class="form-row">
-            <Input name="firstName" placeholder="First Name" required />
-            <Input name="lastName" placeholder="Last Name" required />
+            <Input name="firstName" placeholder="Nombre" required />
+            <Input name="lastName" placeholder="Apellido" required />
           </div>
-          <Input type="email" name="email" placeholder="Email Address" required />
-          <Input type="tel" name="phone" placeholder="Phone Number" />
+          <Input type="email" name="email" placeholder="Correo Electrónico" required />
+          <Input type="tel" name="phone" placeholder="Número de Celular" />
           
           <div class="select-wrapper">
             <select name="service" required class="select-input">
-              <option value="" disabled selected>Select a Service</option>
-              <option value="yoga-class">Yoga Class</option>
-              <option value="yoga-retreat">Yoga Retreat</option>
-              <option value="meditation">Meditation Session</option>
-              <option value="coaching">Personal Coaching</option>
+              <option value="" disabled selected>Seleccioná un Servicio</option>
+              <option value="yoga-class">Clase de Yoga</option>
+              <option value="yoga-retreat">Retiro de Yoga</option>
+              <option value="meditation">Sesión de Meditación</option>
+              <option value="coaching">Coaching Personal</option>
             </select>
           </div>
           
-          <Button type="submit" size="lg" class="submit-btn">Request Booking</Button>
+          <Button type="submit" size="lg" class="submit-btn">Solicitar Reserva</Button>
         </form>
       </div>
     </div>

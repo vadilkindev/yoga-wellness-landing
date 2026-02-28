@@ -1,37 +1,59 @@
 :root {
   /* Colors */
-  --color-primary: #a89fdf; /* Soft lavender/purple */
-  --color-secondary: #fdfaf6; /* Light warm background */
-  --color-accent: #d8c3a5; /* Sand/gold accent */
+  --color-primary: #ee6373;
+  /* Vibrant Watermelon Pink */
+  --color-secondary: #fce7ea;
+  /* Very Light Pink */
+  --color-accent: #faa5b2;
+  /* Mid Pink */
   --color-bg: #ffffff;
-  --color-text-primary: #2c2b30;
+  --color-text-primary: #2b2b2b;
+  /* Dark Grey */
   --color-text-secondary: #6e6b7b;
-  --color-border: #e6e4f0;
-  --color-muted: #f4f3f9;
+  /* Muted Grey */
+  --color-border: #f5b0b9;
+  /* Pale Pink */
+  --color-muted: #fbf3f4;
 
   /* Typography */
   --font-display: 'Playfair Display', 'Oranienbaum', serif;
   --font-body: 'Outfit', system-ui, -apple-system, sans-serif;
 
   /* Typographic Scale */
-  --text-xs: 0.75rem;     /* 12px */
-  --text-sm: 0.875rem;    /* 14px */
-  --text-base: 1rem;      /* 16px */
-  --text-lg: 1.125rem;    /* 18px */
-  --text-xl: 1.25rem;     /* 20px */
-  --text-2xl: 1.5rem;     /* 24px */
-  --text-3xl: 2rem;       /* 32px */
-  --text-4xl: 2.5rem;     /* 40px */
-  --text-5xl: 3.5rem;     /* 56px */
+  --text-xs: 0.75rem;
+  /* 12px */
+  --text-sm: 0.875rem;
+  /* 14px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 2rem;
+  /* 32px */
+  --text-4xl: 2.5rem;
+  /* 40px */
+  --text-5xl: 3.5rem;
+  /* 56px */
 
   /* Spacing */
-  --space-xs: 0.5rem;     /* 8px */
-  --space-sm: 1rem;       /* 16px */
-  --space-md: 1.5rem;     /* 24px */
-  --space-lg: 2rem;       /* 32px */
-  --space-xl: 3rem;       /* 48px */
-  --space-2xl: 4rem;      /* 64px */
-  --space-3xl: 6rem;      /* 96px */
+  --space-xs: 0.5rem;
+  /* 8px */
+  --space-sm: 1rem;
+  /* 16px */
+  --space-md: 1.5rem;
+  /* 24px */
+  --space-lg: 2rem;
+  /* 32px */
+  --space-xl: 3rem;
+  /* 48px */
+  --space-2xl: 4rem;
+  /* 64px */
+  --space-3xl: 6rem;
+  /* 96px */
 
   /* Border Radius */
   --radius-sm: 4px;
@@ -41,8 +63,9 @@
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(168, 159, 223, 0.15); /* Tinted shadow */
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(168, 159, 223, 0.15);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(238, 99, 115, 0.15);
+  /* Tinted shadow */
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(238, 99, 115, 0.15);
 
   /* Layout */
   --container-width: 1200px;

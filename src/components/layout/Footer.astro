@@ -11,11 +11,11 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="logo">ZENTONINA</span>
-        <p class="tagline">Yoga, Wellness & Life Coaching</p>
+        <p class="tagline">Yoga, Bienestar & Life Coaching</p>
       </div>
       
       <div class="footer-links">
-        <h3 class="footer-title">Links</h3>
+        <h3 class="footer-title">Menú</h3>
         <ul class="link-list">
           {NAV_LINKS.map(link => (
             <li><a href={link.href}>{link.label}</a></li>
@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
       </div>
 
       <div class="footer-social">
-        <h3 class="footer-title">Follow Me</h3>
+        <h3 class="footer-title">Seguime</h3>
         <div class="social-icons">
           <!-- Simplified Icons -->
           <IconWrapper size="sm"><span aria-hidden="true">In</span></IconWrapper>
@@ -35,7 +35,7 @@ const year = new Date().getFullYear();
     </div>
     
     <div class="footer-bottom">
-      <p>&copy; {year} Zentonina. All rights reserved.</p>
+      <p>&copy; {year} Zentonina. Todos los derechos reservados.</p>
     </div>
   </Container>
 </footer>
