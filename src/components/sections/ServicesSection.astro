@@ -1,0 +1,89 @@
+---
+import { SERVICES } from '../../constants';
+import Container from '../layout/Container.astro';
+import SectionWrapper from '../layout/SectionWrapper.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+import IconWrapper from '../ui/IconWrapper.astro';
+---
+
+<SectionWrapper id="services" bg="white">
+  <Container>
+    <SectionTitle 
+      title="Clinic Setup" 
+      subtitle="Zentonina Services"
+    />
+    
+    <div class="services-grid">
+      {SERVICES.map(service => (
+        <Card interactive class="service-card">
+          <div class="card-content">
+            <IconWrapper size="lg" class="service-icon">
+              {service.icon}
+            </IconWrapper>
+            <h3 class="service-title">{service.title}</h3>
+            <p class="service-description">{service.description}</p>
+          </div>
+          <div class="card-action">
+            <Button variant="outline" href="#booking" class="service-btn">Book Now</Button>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</SectionWrapper>
+
+<style>
+  .services-grid {
+    display: grid;
+    gap: var(--space-xl);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .service-card {
+    text-align: center;
+    justify-content: space-between;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .service-icon {
+    margin-bottom: var(--space-lg);
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .service-title {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+  }
+
+  .service-description {
+    color: var(--color-text-secondary);
+  }
+  
+  .card-action {
+    margin-top: auto;
+  }
+
+  .service-btn {
+    width: 100%;
+  }
+</style>

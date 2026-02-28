@@ -1,0 +1,170 @@
+---
+import Container from '../layout/Container.astro';
+import SectionWrapper from '../layout/SectionWrapper.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+
+// Placeholder blog data
+const BLOG_POSTS = [
+  {
+    id: 1,
+    title: '5 Morning Yoga Poses to Start Your Day',
+    category: 'Yoga',
+    date: 'Oct 12, 2023',
+    image: 'bg-primary',
+    excerpt: 'Kickstart your metabolism and wake up your mind with these simple morning routines.'
+  },
+  {
+    id: 2,
+    title: 'Understanding Mindfulness in Chaos',
+    category: 'Meditation',
+    date: 'Oct 05, 2023',
+    image: 'bg-secondary',
+    excerpt: 'How to stay grounded when everything around you feels like a whirlwind.'
+  },
+  {
+    id: 3,
+    title: 'The Balance of Nutrition and Flow',
+    category: 'Wellness',
+    date: 'Sep 28, 2023',
+    image: 'bg-muted',
+    excerpt: 'Eating right complements your physical practice. Heres what to prioritize.'
+  }
+];
+---
+
+<SectionWrapper id="blog" bg="white">
+  <Container>
+    <div class="blog-header">
+      <SectionTitle 
+        title="Stories & Insights" 
+        subtitle="From the Blog"
+        alignment="left"
+      />
+      <a href="/blog" class="view-all">View All Posts &rarr;</a>
+    </div>
+
+    <div class="blog-grid">
+      {BLOG_POSTS.map(post => (
+        <Card interactive class="blog-card">
+          <div class={`blog-image-placeholder ${post.image}`}></div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <Badge label={post.category} />
+              <span class="blog-date">{post.date}</span>
+            </div>
+            <h3 class="blog-title">
+              <a href={`/blog/${post.id}`}>{post.title}</a>
+            </h3>
+            <p class="blog-excerpt">{post.excerpt}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</SectionWrapper>
+
+<style>
+  .blog-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-xl);
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .blog-header {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+
+  .view-all {
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+  }
+
+  .view-all:hover {
+    color: var(--color-text-primary);
+  }
+
+  .blog-grid {
+    display: grid;
+    gap: var(--space-xl);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .blog-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .blog-image-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .bg-primary { background-color: var(--color-primary); opacity: 0.8; }
+  .bg-secondary { background-color: var(--color-secondary); }
+  .bg-muted { background-color: var(--color-border); }
+
+  .blog-content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .blog-date {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .blog-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: 1.3;
+    margin-bottom: var(--space-sm);
+  }
+
+  .blog-title a {
+    transition: color 0.3s ease;
+  }
+
+  .blog-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .blog-excerpt {
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    margin-top: auto;
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { size = 'md', class: className = '' } = Astro.props;
+---
+<div class:list={['icon-wrapper', `size-${size}`, className]}>
+  <slot />
+</div>
+
+<style>
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--color-muted);
+    color: var(--color-primary);
+  }
+
+  .size-sm {
+    width: 32px;
+    height: 32px;
+    font-size: var(--text-sm);
+  }
+
+  .size-md {
+    width: 48px;
+    height: 48px;
+    font-size: var(--text-xl);
+  }
+
+  .size-lg {
+    width: 64px;
+    height: 64px;
+    font-size: var(--text-3xl);
+  }
+</style>

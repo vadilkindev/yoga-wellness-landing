@@ -1,0 +1,140 @@
+---
+import Container from '../layout/Container.astro';
+import SectionWrapper from '../layout/SectionWrapper.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Button from '../ui/Button.astro';
+import Input from '../ui/Input.astro';
+---
+
+<SectionWrapper id="booking" bg="muted">
+  <Container>
+    <div class="booking-container">
+      <div class="booking-content">
+        <SectionTitle 
+          title="Book A Session" 
+          subtitle="Ready to start?"
+        />
+        <p class="booking-description">
+          Whether you're looking for private classes, retreats, or coaching consultations, 
+          let's find the perfect time to connect. Fill out the form below.
+        </p>
+      </div>
+
+      <div class="booking-form-wrapper">
+        <form class="booking-form" onsubmit="event.preventDefault();">
+          <div class="form-row">
+            <Input name="firstName" placeholder="First Name" required />
+            <Input name="lastName" placeholder="Last Name" required />
+          </div>
+          <Input type="email" name="email" placeholder="Email Address" required />
+          <Input type="tel" name="phone" placeholder="Phone Number" />
+          
+          <div class="select-wrapper">
+            <select name="service" required class="select-input">
+              <option value="" disabled selected>Select a Service</option>
+              <option value="yoga-class">Yoga Class</option>
+              <option value="yoga-retreat">Yoga Retreat</option>
+              <option value="meditation">Meditation Session</option>
+              <option value="coaching">Personal Coaching</option>
+            </select>
+          </div>
+          
+          <Button type="submit" size="lg" class="submit-btn">Request Booking</Button>
+        </form>
+      </div>
+    </div>
+  </Container>
+</SectionWrapper>
+
+<style>
+  .booking-container {
+    max-width: 800px;
+    margin-inline: auto;
+    background-color: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .booking-content {
+    padding: var(--space-2xl) var(--space-xl) var(--space-lg);
+    text-align: center;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  /* Override SectionTitle colors for dark background */
+  .booking-content :global(.subtitle) {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .booking-content :global(.title) {
+    color: var(--color-bg);
+  }
+
+  .booking-description {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .booking-form-wrapper {
+    padding: var(--space-xl);
+  }
+
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 640px) {
+    .form-row {
+      flex-direction: row;
+    }
+  }
+
+  .select-wrapper {
+    position: relative;
+  }
+
+  .select-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .select-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(168, 159, 223, 0.2);
+  }
+
+  .select-wrapper::after {
+    content: '▼';
+    font-size: 0.8em;
+    position: absolute;
+    right: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-text-secondary);
+  }
+
+  .submit-btn {
+    margin-top: var(--space-md);
+  }
+</style>

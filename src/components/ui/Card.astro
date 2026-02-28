@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+  interactive?: boolean;
+}
+
+const { class: className = '', interactive = false } = Astro.props;
+---
+<div class:list={['card', { interactive }, className]}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+  }
+</style>

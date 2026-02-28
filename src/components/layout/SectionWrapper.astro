@@ -1,0 +1,33 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  bg?: 'white' | 'secondary' | 'muted' | 'primary';
+}
+
+const { id, class: className = '', bg = 'white' } = Astro.props;
+---
+<section id={id} class:list={['section-wrapper', `bg-${bg}`, className]}>
+  <slot />
+</section>
+
+<style>
+  .section-wrapper {
+    padding-block: var(--space-3xl);
+    width: 100%;
+  }
+
+  .bg-white { background-color: var(--color-bg); }
+  .bg-secondary { background-color: var(--color-secondary); }
+  .bg-muted { background-color: var(--color-muted); }
+  .bg-primary { 
+    background-color: var(--color-primary); 
+    color: var(--color-bg);
+  }
+
+  @media (min-width: 768px) {
+    .section-wrapper {
+      padding-block: calc(var(--space-3xl) * 1.5);
+    }
+  }
+</style>

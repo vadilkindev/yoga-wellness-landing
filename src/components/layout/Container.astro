@@ -1,0 +1,26 @@
+---
+---
+<div class="container">
+  <slot />
+</div>
+
+<style>
+  .container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-inline: var(--space-lg);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-inline: var(--space-xl);
+    }
+  }
+</style>

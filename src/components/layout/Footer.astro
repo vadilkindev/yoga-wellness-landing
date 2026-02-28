@@ -1,0 +1,124 @@
+---
+import { NAV_LINKS } from '../../constants';
+import Container from './Container.astro';
+import IconWrapper from '../ui/IconWrapper.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <Container>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">ZENTONINA</span>
+        <p class="tagline">Yoga, Wellness & Life Coaching</p>
+      </div>
+      
+      <div class="footer-links">
+        <h3 class="footer-title">Links</h3>
+        <ul class="link-list">
+          {NAV_LINKS.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h3 class="footer-title">Follow Me</h3>
+        <div class="social-icons">
+          <!-- Simplified Icons -->
+          <IconWrapper size="sm"><span aria-hidden="true">In</span></IconWrapper>
+          <IconWrapper size="sm"><span aria-hidden="true">Ig</span></IconWrapper>
+          <IconWrapper size="sm"><span aria-hidden="true">Fb</span></IconWrapper>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {year} Zentonina. All rights reserved.</p>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    padding-block: var(--space-3xl) var(--space-lg);
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .logo {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .tagline {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .footer-title {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .link-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .link-list a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+  }
+
+  .link-list a:hover {
+    color: var(--color-bg);
+  }
+
+  .social-icons {
+    display: flex;
+    gap: var(--space-sm);
+  }
+  
+  /* Override IconWrapper colors for footer */
+  .social-icons :global(.icon-wrapper) {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-bg);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .social-icons :global(.icon-wrapper:hover) {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .footer-bottom {
+    padding-top: var(--space-xl);
+    text-align: center;
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.8);
+  }
+</style>
