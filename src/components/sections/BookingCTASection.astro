@@ -8,7 +8,7 @@ import Input from '../ui/Input.astro';
 
 <SectionWrapper id="booking" bg="muted">
   <Container>
-    <div class="booking-container">
+    <div class="booking-container reveal-up">
       <div class="booking-content">
         <SectionTitle 
           title="Reservá una Sesión" 
@@ -39,7 +39,7 @@ import Input from '../ui/Input.astro';
             </select>
           </div>
           
-          <Button type="submit" size="lg" class="submit-btn">Solicitar Reserva</Button>
+          <Button type="submit" size="lg" class="submit-btn" variant="primary">Solicitar Reserva</Button>
         </form>
       </div>
     </div>
@@ -51,35 +51,39 @@ import Input from '../ui/Input.astro';
     max-width: 800px;
     margin-inline: auto;
     background-color: var(--color-bg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border); /* Flat, no shadow */
+    border-radius: var(--radius-sm);
     overflow: hidden;
   }
 
   .booking-content {
-    padding: var(--space-2xl) var(--space-xl) var(--space-lg);
+    padding: var(--space-3xl) var(--space-xl) var(--space-lg);
     text-align: center;
-    background-color: var(--color-primary);
+    background-color: var(--color-text-primary); /* Deep Espresso provides stark contrast */
     color: var(--color-bg);
   }
 
-  /* Override SectionTitle colors for dark background */
+  .booking-content :global(.title), 
   .booking-content :global(.subtitle) {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-bg) !important;
   }
-  .booking-content :global(.title) {
-    color: var(--color-bg);
+
+  .booking-content :global(.subtitle::before),
+  .booking-content :global(.subtitle::after) {
+    background-color: var(--color-bg) !important;
   }
 
   .booking-description {
-    font-size: var(--text-lg);
-    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--text-md);
+    color: rgba(255, 255, 255, 0.85); /* Slightly muted white */
     max-width: 600px;
     margin-inline: auto;
+    line-height: 1.7;
+    margin-top: calc(-1 * var(--space-lg)); /* Pull up closer to title */
   }
 
   .booking-form-wrapper {
-    padding: var(--space-xl);
+    padding: var(--space-2xl) var(--space-xl);
   }
 
   .booking-form {
@@ -107,27 +111,28 @@ import Input from '../ui/Input.astro';
   .select-input {
     width: 100%;
     padding: var(--space-sm) var(--space-md);
-    background-color: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border); /* Elegant underline input style */
+    border-radius: 0;
     font-family: var(--font-body);
     font-size: var(--text-base);
     color: var(--color-text-primary);
     appearance: none;
     cursor: pointer;
+    transition: all var(--transition-fast);
   }
 
   .select-input:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgba(168, 159, 223, 0.2);
   }
 
   .select-wrapper::after {
     content: '▼';
-    font-size: 0.8em;
+    font-size: 0.6em;
     position: absolute;
-    right: var(--space-md);
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
@@ -135,6 +140,6 @@ import Input from '../ui/Input.astro';
   }
 
   .submit-btn {
-    margin-top: var(--space-md);
+    margin-top: var(--space-xl);
   }
 </style>

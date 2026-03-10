@@ -1,75 +1,77 @@
 :root {
-  /* Colors */
-  --color-primary: #ee6373;
-  /* Vibrant Watermelon Pink */
-  --color-secondary: #fce7ea;
-  /* Very Light Pink */
-  --color-accent: #faa5b2;
-  /* Mid Pink */
-  --color-bg: #ffffff;
-  --color-text-primary: #2b2b2b;
-  /* Dark Grey */
-  --color-text-secondary: #6e6b7b;
-  /* Muted Grey */
-  --color-border: #f5b0b9;
-  /* Pale Pink */
-  --color-muted: #fbf3f4;
+  /* Colors - Luxury Organic Minimalism + Vibrant Coral Logo Accent */
+  --color-primary: #EB5B6D;
+  /* Vibrant Coral / Watermelon Pink from Logo */
+  --color-primary-dark: #cc4d5e;
+  --color-on-primary: #FFFFFF;
+  /* Strict WCAG contrast for text on primary */
+  --color-secondary: #f4e9e5;
+  /* Very soft warm blush/sand, complements coral */
+  --color-accent: #E08C86;
+  /* Softer, dusty sunset coral */
+  --color-bg: #FAF8F5;
+  /* Warm off-white */
+  --color-text-primary: #2D2B2A;
+  /* Deep Espresso */
+  --color-text-secondary: #716E6A;
+  /* Muted stone */
+  --color-border: #EAE3DE;
+  /* Soft Greige border */
+  --color-muted: #F2EFE9;
+  /* Pale earthy */
 
   /* Typography */
-  --font-display: 'Playfair Display', 'Oranienbaum', serif;
-  --font-body: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-display: 'Cormorant Garamond', 'Playfair Display', serif;
+  --font-body: 'Manrope', 'Outfit', system-ui, -apple-system, sans-serif;
 
-  /* Typographic Scale */
+  /* Typographic Scale - slightly adjusted for luxury feel */
   --text-xs: 0.75rem;
-  /* 12px */
   --text-sm: 0.875rem;
-  /* 14px */
-  --text-base: 1rem;
-  /* 16px */
-  --text-lg: 1.125rem;
-  /* 18px */
-  --text-xl: 1.25rem;
-  /* 20px */
-  --text-2xl: 1.5rem;
-  /* 24px */
-  --text-3xl: 2rem;
-  /* 32px */
-  --text-4xl: 2.5rem;
-  /* 40px */
-  --text-5xl: 3.5rem;
-  /* 56px */
+  --text-base: 1.0625rem;
+  /* ~17px base for better readability */
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.75rem;
+  --text-4xl: 3.5rem;
+  --text-5xl: 4.5rem;
+  --text-6xl: 6rem;
+  /* Extra large display */
 
   /* Spacing */
   --space-xs: 0.5rem;
-  /* 8px */
   --space-sm: 1rem;
-  /* 16px */
   --space-md: 1.5rem;
-  /* 24px */
   --space-lg: 2rem;
-  /* 32px */
   --space-xl: 3rem;
-  /* 48px */
   --space-2xl: 4rem;
-  /* 64px */
   --space-3xl: 6rem;
-  /* 96px */
+  --space-4xl: 8rem;
+  /* Extremely generous spacing */
 
   /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  /* More sophisticated sharper edges */
+  --radius-lg: 12px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(238, 99, 115, 0.15);
-  /* Tinted shadow */
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(238, 99, 115, 0.15);
+  /* Shadows - Much softer, barely there */
+  --shadow-sm: 0 4px 12px -2px rgba(45, 43, 42, 0.04);
+  --shadow-md: 0 12px 28px -4px rgba(45, 43, 42, 0.06);
+  --shadow-lg: 0 20px 40px -4px rgba(45, 43, 42, 0.08);
 
   /* Layout */
-  --container-width: 1200px;
-  --navbar-height: 80px;
+  --container-width: 1280px;
+  /* Slightly wider */
+  --navbar-height: 90px;
+
+  /* Animations */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --transition-slow: 0.6s var(--ease-out-expo);
+  --transition-medium: 0.4s var(--ease-out-expo);
+  --transition-fast: 0.2s ease;
 
   /* Breakpoints */
   --bp-sm: 640px;

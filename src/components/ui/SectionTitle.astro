@@ -8,14 +8,14 @@ interface Props {
 
 const { title, subtitle, alignment = 'center', class: className = '' } = Astro.props;
 ---
-<div class:list={['section-header', `align-${alignment}`, className]}>
+<div class:list={['section-header reveal-up', `align-${alignment}`, className]}>
   {subtitle && <span class="subtitle">{subtitle}</span>}
   <h2 class="title">{title}</h2>
 </div>
 
 <style>
   .section-header {
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
     max-width: 800px;
   }
 
@@ -29,29 +29,51 @@ const { title, subtitle, alignment = 'center', class: className = '' } = Astro.p
   }
 
   .subtitle {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
     font-family: var(--font-body);
-    font-size: var(--text-sm);
+    font-size: 0.8125rem; /* ~13px */
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     color: var(--color-primary);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  /* Elegant line before subtitle */
+  .subtitle::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--color-primary);
+  }
+
+  /* Remove prefix line if centered or keep it symmetric */
+  .align-center .subtitle::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--color-primary);
   }
 
   .title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-4xl);
     margin: 0;
+    line-height: 1.1;
   }
 
   @media (min-width: 768px) {
     .title {
-      font-size: var(--text-4xl);
+      font-size: var(--text-5xl);
     }
   }
 
   @media (min-width: 1024px) {
     .title {
-      font-size: var(--text-5xl);
+      font-size: var(--text-6xl);
     }
   }
 </style>

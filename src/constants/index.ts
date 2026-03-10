@@ -10,26 +10,26 @@ export const NAV_LINKS: NavItem[] = [
 export const SERVICES: ServiceItem[] = [
     {
         id: 's1',
-        title: 'Clase de Yoga',
-        description: 'Una práctica suave y restaurativa pensada para ayudarte a relajar, soltar tensiones y reconectar con vos misma.',
+        title: 'Clases de Yoga para adultos',
+        description: 'Combiná movimiento, respiración y meditación para promover el bienestar físico y mental.',
         icon: '🧘‍♀️'
     },
     {
         id: 's2',
-        title: 'Retiro de Yoga',
-        description: 'Sumergite en una experiencia transformadora que combina yoga, meditación y bienestar integral.',
+        title: 'Clases de Yoga para niños',
+        description: 'Una experiencia transformadora que combina yoga, meditación y bienestar integral para los pequeños.',
         icon: '🌴'
     },
     {
         id: 's3',
-        title: 'Sesión de Meditación',
-        description: 'Prácticas de meditación guiada para cultivar la atención plena, bajar el estrés y encontrar claridad mental.',
+        title: 'Masajes Shiatsu',
+        description: 'El masaje shiatsu es una técnica terapéutica japonesa que utiliza la presión de los dedos y las palmas para estimular puntos específicos del cuerpo, promoviendo el bienestar físico y emocional.',
         icon: '🧘‍♂️'
     },
     {
         id: 's4',
-        title: 'Coaching Personal',
-        description: 'Sesiones personalizadas adaptadas a lo que necesitás, enfocadas en tu crecimiento personal y en lograr tus metas.',
+        title: 'Flores de Bach',
+        description: 'Sesiones personalizadas adaptadas a lo que necesitás, método terapéutico que utiliza esencias naturales extraídas de flores para equilibrar las emociones y promover el bienestar integral.',
         icon: '🎯'
     }
 ];
