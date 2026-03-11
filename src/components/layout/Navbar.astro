@@ -8,7 +8,13 @@ import Container from './Container.astro';
   <Container>
     <div class="navbar-wrapper">
       <a href="/" class="logo" aria-label="Radha - Inicio">
-        Radha
+        <img
+          src="/assets/images/logo-blanco-rosa_converted.webp"
+          alt="Radha"
+          class="logo-img"
+          width="120"
+          height="48"
+        />
       </a>
 
       <!-- Desktop Nav -->
@@ -26,7 +32,7 @@ import Container from './Container.astro';
 
       <!-- CTA -->
       <div class="nav-cta">
-        <Button variant="outline" size="sm" href="#booking">Reservá</Button>
+        <Button variant="outline" size="sm" href="https://wa.me/5491112345678?text=Hola%2C%20quiero%20reservar%20una%20sesi%C3%B3n" target="_blank" rel="noopener noreferrer">Reservá</Button>
       </div>
 
       <!-- Mobile Menu Toggle -->
@@ -47,7 +53,7 @@ import Container from './Container.astro';
         </li>
       ))}
       <li class="mobile-cta">
-        <Button variant="primary" href="#booking" class="mobile-cta-btn">Reservá tu Lugar</Button>
+        <Button variant="primary" href="https://wa.me/5491112345678?text=Hola%2C%20quiero%20reservar%20una%20sesi%C3%B3n" target="_blank" rel="noopener noreferrer" class="mobile-cta-btn">Reservá tu Lugar</Button>
       </li>
     </ul>
   </nav>
@@ -74,31 +80,43 @@ import Container from './Container.astro';
   }
 
   .navbar-wrapper {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     height: var(--navbar-height);
     width: 100%;
+    gap: var(--space-lg);
   }
 
   /* ── Logo ── */
   .logo {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    color: var(--color-text-primary);
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
   }
 
-  /* ── Desktop nav ── */
+  .logo-img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .logo-img {
+      height: 52px;
+    }
+  }
+
   .desktop-nav {
     display: none;
+    justify-content: center;
   }
 
   @media (min-width: 768px) {
     .desktop-nav {
-      display: block;
+      display: flex;
+      justify-content: center;
     }
   }
 

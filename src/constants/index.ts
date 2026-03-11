@@ -1,10 +1,9 @@
 import type { NavItem, ServiceItem, FeatureItem } from '../types';
 
 export const NAV_LINKS: NavItem[] = [
-    { label: 'Precios', href: '#pricing' },
     { label: 'Servicios', href: '#services' },
     { label: 'Sobre mí', href: '#about' },
-    { label: 'Reservá', href: '#booking' },
+    { label: 'Productos', href: '#products-preview' },
 ];
 
 export const SERVICES: ServiceItem[] = [

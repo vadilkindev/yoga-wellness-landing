@@ -5,6 +5,8 @@ interface Props {
   href?: string;
   class?: string;
   type?: 'button' | 'submit' | 'reset';
+  target?: string;
+  rel?: string;
 }
 
 const { 
@@ -12,14 +14,18 @@ const {
   size = 'md', 
   href, 
   class: className = '',
-  type = 'button'
+  type = 'button',
+  target,
+  rel,
 } = Astro.props;
 
 const Element = href ? 'a' : 'button';
 ---
 
 <Element 
-  href={href} 
+  href={href}
+  target={target}
+  rel={rel}
   type={href ? undefined : type}
   class:list={['btn', `btn-${variant}`, `btn-${size}`, className]}
 >
