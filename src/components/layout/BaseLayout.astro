@@ -16,7 +16,7 @@ const {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,5 +35,33 @@ const {
       <slot />
     </main>
     <Footer />
+
+    <!-- Global scroll-reveal via IntersectionObserver -->
+    <script>
+      const revealEls = document.querySelectorAll<HTMLElement>('.reveal-up');
+
+      // Hero elements animate via CSS keyframes — skip them
+      const toObserve = Array.from(revealEls).filter(
+        el => !el.closest('#hero')
+      );
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                (entry.target as HTMLElement).classList.add('visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        toObserve.forEach(el => io.observe(el));
+      } else {
+        toObserve.forEach(el => el.classList.add('visible'));
+      }
+    </script>
   </body>
 </html>
+

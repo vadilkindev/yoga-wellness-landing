@@ -25,23 +25,137 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Soft noise texture overlay container */
-    position: relative;
+    overflow-x: hidden;
 }
 
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9999;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.035;
-    /* Subtle noise for texture */
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
 }
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    border: none;
+    background: transparent;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* Layout utilities */
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--space-lg);
+}
+
+.section {
+    padding-block: var(--space-4xl);
+}
+
+.grid {
+    display: grid;
+    gap: var(--space-lg);
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ── Scroll-reveal (JS-driven via IntersectionObserver) ── */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+.reveal-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays applied by IntersectionObserver script */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* Hero animates immediately on load (no IO needed) */
+#hero .reveal-up {
+    animation: revealUp 1s var(--ease-out-expo) forwards;
+}
+#hero .reveal-delay-1 { animation-delay: 0.1s; }
+#hero .reveal-delay-2 { animation-delay: 0.22s; }
+#hero .reveal-delay-3 { animation-delay: 0.34s; }
+#hero .reveal-delay-4 { animation-delay: 0.5s; }
+
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal-up {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 
 /* Headings */
 h1,

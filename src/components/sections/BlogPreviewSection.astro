@@ -2,111 +2,114 @@
 import Container from "../layout/Container.astro";
 import SectionWrapper from "../layout/SectionWrapper.astro";
 import SectionTitle from "../ui/SectionTitle.astro";
-import Card from "../ui/Card.astro";
 import Badge from "../ui/Badge.astro";
 import productsData from "../../data/products.json";
 
 const products = productsData.slice(0, 3);
 const PHONE = "";
+
+// Format ARS price
+function formatPrice(n: number) {
+  return new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+    minimumFractionDigits: 0,
+  }).format(n);
+}
 ---
 
-<SectionWrapper id="products-preview" bg="none">
+<SectionWrapper id="products-preview" bg="white">
   <Container>
-<<<<<<< HEAD
-    <div class="blog-header reveal-up">
-      <SectionTitle 
-        title="Productos Destacados" 
-=======
-    <div class="blog-header">
+    <div class="products-header">
       <SectionTitle
         title="Productos Destacados"
->>>>>>> 3ffffefe1ebf9b41ef343910ad77b2c446d2401e
         subtitle="Nuestro Catálogo"
         alignment="left"
       />
       <a href="/productos" class="view-all">Ver todos los productos &rarr;</a>
     </div>
 
-    <div class="blog-grid">
-<<<<<<< HEAD
-      {products.map((product, index) => (
-        <div class={`reveal-up reveal-delay-${(index % 3) + 1}`}>
-          <Card interactive class="blog-card">
-            {product.images && product.images[0] ? (
-              <img src={product.images[0]} alt={product.name} class="blog-image" />
-            ) : (
-              <div class="blog-image-placeholder bg-muted"></div>
-=======
+    <div class="products-grid">
       {
         products.map((product) => (
-          <Card interactive class="blog-card">
-            {product.images && product.images[0] ? (
-              <img
-                src={product.images[0]}
-                alt={product.name}
-                class="blog-image"
-              />
-            ) : (
-              <div class="bg-muted blog-image-placeholder" />
->>>>>>> 3ffffefe1ebf9b41ef343910ad77b2c446d2401e
-            )}
-            <div class="blog-content">
-              <div class="blog-meta">
-                {product.tags && product.tags.length > 0 ? (
+          <article class="product-card">
+            <!-- Image -->
+            <div class="product-img-wrapper">
+              {product.images && product.images[0] ? (
+                <img
+                  src={product.images[0]}
+                  alt={product.name}
+                  class="product-img"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="product-img-placeholder" aria-hidden="true" />
+              )}
+              {product.tags && product.tags.length > 0 && (
+                <div class="product-badge">
                   <Badge label={product.tags[0]} />
-                ) : (
-<<<<<<< HEAD
-                  <div></div>
-                )}
-                <span class="blog-date">{product.variants && product.variants[0] ? product.variants[0].size : ''}</span>
-              </div>
-              <h3 class="blog-title">
-                <a href={`/productos/${product.id}`}>{product.name}</a>
-=======
-                  <div />
-                )}
-                <span class="blog-date">
-                  {product.variants && product.variants[0]
-                    ? product.variants[0].size
-                    : ""}
+                </div>
+              )}
+            </div>
+
+            <!-- Body -->
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="product-size">
+                  {product.variants?.[0]?.size ?? ""}
                 </span>
               </div>
-              <h3 class="blog-title">
-                <a
-                  href={`https://wa.me/${PHONE}?text=${encodeURIComponent(`Hola, solicito información de: ${product.name}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {product.name}
-                </a>
->>>>>>> 3ffffefe1ebf9b41ef343910ad77b2c446d2401e
-              </h3>
-              <p class="blog-excerpt">{product.subtitle}</p>
+
+              <h3 class="product-name">{product.name}</h3>
+              <p class="product-subtitle">{product.subtitle}</p>
+
+              <!-- Price -->
+              <div class="product-pricing">
+                {product.variants?.[0]?.originalPrice &&
+                  product.variants[0].originalPrice !== product.variants[0].currentPrice && (
+                    <span class="price-original">
+                      {formatPrice(product.variants[0].originalPrice)}
+                    </span>
+                  )}
+                <span class="price-current">
+                  {formatPrice(product.variants?.[0]?.currentPrice ?? 0)}
+                </span>
+              </div>
+
+              <!-- CTA -->
+              <a
+                href={`https://wa.me/${PHONE}?text=${encodeURIComponent(`Hola, me interesa el producto: ${product.name}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-buy"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.508 5.837L.057 23.882l6.198-1.627A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 0 1-4.964-1.344l-.356-.212-3.68.966.982-3.586-.232-.368A9.79 9.79 0 0 1 2.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/>
+                </svg>
+                Comprar por WhatsApp
+              </a>
             </div>
-          </Card>
-<<<<<<< HEAD
-        </div>
-      ))}
-=======
+          </article>
         ))
       }
->>>>>>> 3ffffefe1ebf9b41ef343910ad77b2c446d2401e
     </div>
   </Container>
 </SectionWrapper>
 
 <style>
-  .blog-header {
+  /* ── Header ── */
+  .products-header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: var(--space-xl);
     gap: var(--space-md);
+    margin-bottom: var(--space-xl);
   }
 
   @media (min-width: 768px) {
-    .blog-header {
+    .products-header {
       flex-direction: row;
       align-items: flex-end;
       margin-bottom: var(--space-2xl);
@@ -121,6 +124,7 @@ const PHONE = "";
     letter-spacing: 0.15em;
     color: var(--color-primary);
     transition: color var(--transition-fast);
+    white-space: nowrap;
     padding-bottom: var(--space-md);
   }
 
@@ -128,95 +132,167 @@ const PHONE = "";
     color: var(--color-text-primary);
   }
 
-  .blog-grid {
+  /* ── Grid ── */
+  .products-grid {
     display: grid;
     gap: var(--space-xl);
     grid-template-columns: 1fr;
   }
 
-  @media (min-width: 768px) {
-    .blog-grid {
+  @media (min-width: 640px) {
+    .products-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1024px) {
-    .blog-grid {
+    .products-grid {
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-2xl);
     }
   }
 
-  .blog-card {
-    padding: 0;
+  /* ── Card ── */
+  .product-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    height: 100%;
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
   }
 
-  .blog-image-placeholder, .blog-image {
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+  }
+
+  /* ── Image ── */
+  .product-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-muted);
+  }
+
+  .product-img {
     width: 100%;
-    aspect-ratio: 4/5; /* Taller, elegant aspect ratio */
+    height: 100%;
     object-fit: cover;
-    border-bottom: 1px solid var(--color-border);
+    transition: transform var(--transition-slow);
   }
-<<<<<<< HEAD
-  
-  .bg-muted { background-color: var(--color-muted); }
-=======
 
-  .bg-primary {
-    background-color: var(--color-primary);
-    opacity: 0.8;
+  .product-card:hover .product-img {
+    transform: scale(1.04);
   }
-  .bg-secondary {
-    background-color: var(--color-secondary);
-  }
-  .bg-muted {
-    background-color: var(--color-border);
-  }
->>>>>>> 3ffffefe1ebf9b41ef343910ad77b2c446d2401e
 
-  .blog-content {
-    padding: var(--space-xl);
+  .product-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-muted) 100%);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+  }
+
+  /* ── Body ── */
+  .product-body {
+    padding: var(--space-lg) var(--space-xl) var(--space-xl);
     display: flex;
     flex-direction: column;
     flex: 1;
+    gap: var(--space-xs);
   }
 
-  .blog-meta {
+  .product-meta {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-md);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
   }
 
-  .blog-date {
+  .product-size {
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-text-secondary);
   }
 
-  .blog-title {
+  .product-name {
     font-family: var(--font-display);
     font-size: var(--text-2xl);
     font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: var(--space-sm);
+    line-height: 1.15;
+    color: var(--color-text-primary);
+    margin-bottom: 0;
   }
 
-  .blog-title a {
-    transition: color var(--transition-fast);
-  }
-
-  .blog-title a:hover {
-    color: var(--color-primary);
-  }
-
-  .blog-excerpt {
+  .product-subtitle {
     color: var(--color-text-secondary);
     font-size: var(--text-sm);
     line-height: 1.6;
-    margin-top: auto;
+    flex: 1;
+  }
+
+  /* ── Pricing ── */
+  .product-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .price-original {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: line-through;
+  }
+
+  .price-current {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  /* ── Buy button ── */
+  .btn-buy {
+    margin-top: var(--space-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: #25D366;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .btn-buy svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  .btn-buy:hover {
+    background-color: #1DA851;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  }
+
+  .btn-buy:active {
+    transform: translateY(0);
+    box-shadow: none;
   }
 </style>

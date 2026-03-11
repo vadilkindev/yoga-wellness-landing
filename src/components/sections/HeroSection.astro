@@ -1,158 +1,201 @@
 ---
 import Container from '../layout/Container.astro';
-import SectionWrapper from '../layout/SectionWrapper.astro';
 import Button from '../ui/Button.astro';
 ---
 
-<SectionWrapper id="hero" class="hero-section" bg="none">
+<section id="hero" class="hero-section">
+  <!-- Background image layer -->
   <div class="hero-bg">
-    <!-- Warm, soft gradient mesh effect -->
-    <div class="gradient-blob shape-1"></div>
-    <div class="gradient-blob shape-2"></div>
-    <div class="gradient-blob shape-3"></div>
-    <div class="overlay"></div>
+    <img
+      src="/assets/images/hero-bg.jpg"
+      alt="Hero background"
+      class="hero-bg-img"
+      aria-hidden="true"
+    />
+    <div class="hero-overlay"></div>
   </div>
-  
+
   <Container>
     <div class="hero-content">
-      <span class="hero-subtitle reveal-up">Amor & Expansión</span>
+      <span class="hero-eyebrow reveal-up">Amor &amp; Expansión</span>
       <h1 class="hero-title reveal-up reveal-delay-1">Radha</h1>
-      <p class="hero-description reveal-up reveal-delay-2">Yoga, Meditación y Life Coaching para cultivar una vida en equilibrio profundo y conexión consciente.</p>
-      
+      <p class="hero-description reveal-up reveal-delay-2">
+        Yoga, Meditación y Life Coaching para cultivar una vida en equilibrio profundo y conexión consciente.
+      </p>
+
       <div class="hero-actions reveal-up reveal-delay-3">
         <Button href="#booking" size="lg">Reservá tu Lugar</Button>
+        <Button href="#services" variant="ghost" size="lg" class="hero-btn-ghost">Conocé los Servicios</Button>
       </div>
 
       <div class="hero-keywords reveal-up reveal-delay-4">
         <span>Crecer</span>
-        <span class="dot">•</span>
+        <span class="dot" aria-hidden="true">•</span>
         <span>Fluir</span>
-        <span class="dot">•</span>
+        <span class="dot" aria-hidden="true">•</span>
         <span>Brillar</span>
       </div>
     </div>
   </Container>
-</SectionWrapper>
+
+  <!-- Scroll indicator -->
+  <a href="#about" class="scroll-indicator reveal-up reveal-delay-4" aria-label="Scroll hacia abajo">
+    <span class="scroll-line"></span>
+  </a>
+</section>
 
 <style>
   .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     padding-top: var(--navbar-height);
     overflow: hidden;
   }
 
+  /* ── Background image ── */
   .hero-bg {
     position: absolute;
     inset: 0;
-    overflow: hidden;
-    z-index: -1;
-    background-color: var(--color-bg);
+    z-index: 0;
   }
 
-  .gradient-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.6;
-    animation: drift 20s infinite alternate cubic-bezier(0.5, 0, 0.5, 1);
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    /* fallback when image not found */
+    background-color: var(--color-secondary);
   }
 
-  .shape-1 {
-    top: -20%;
-    left: -10%;
-    width: 60vw;
-    height: 60vw;
-    background: var(--color-primary); /* Coral */
-  }
-
-  .shape-2 {
-    bottom: -10%;
-    right: -20%;
-    width: 70vw;
-    height: 70vw;
-    background: var(--color-secondary); /* Blush */
-    animation-delay: -5s;
-  }
-
-  .shape-3 {
-    top: 30%;
-    left: 40%;
-    width: 40vw;
-    height: 40vw;
-    background: var(--color-accent); /* Dusty Coral */
-    opacity: 0.25;
-    animation-delay: -10s;
-  }
-
-  @keyframes drift {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(10%, 10%) scale(1.1); }
-  }
-
-  .overlay {
+  /* Multi-layer overlay: warm blush gradient + dark tint for text legibility */
+  .hero-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(250, 248, 245, 0.4); /* Slight frosted glass */
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
+    background:
+      linear-gradient(
+        160deg,
+        rgba(235, 91, 109, 0.35) 0%,
+        rgba(45, 43, 42, 0.55) 100%
+      );
   }
 
+  /* ── Content ── */
   .hero-content {
     position: relative;
-    text-align: center;
-    max-width: 800px;
-    margin-inline: auto;
     z-index: 1;
+    text-align: center;
+    max-width: 760px;
+    margin-inline: auto;
+    padding-block: var(--space-4xl) var(--space-2xl);
   }
 
-  .hero-subtitle {
+  .hero-eyebrow {
     display: block;
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     font-style: italic;
-    color: var(--color-primary);
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.08em;
     margin-bottom: var(--space-sm);
   }
 
   .hero-title {
-    font-size: clamp(4rem, 12vw, 8rem);
-    letter-spacing: 0.05em;
+    font-size: clamp(4.5rem, 14vw, 9rem);
+    letter-spacing: 0.06em;
     font-weight: 300;
-    margin: 0;
-    margin-bottom: var(--space-md);
-    color: var(--color-text-primary);
-    line-height: 1;
+    margin: 0 0 var(--space-md);
+    color: #ffffff;
+    line-height: 0.95;
+    text-shadow: 0 2px 40px rgba(45, 43, 42, 0.3);
   }
 
   .hero-description {
-    font-size: var(--text-lg);
-    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.82);
     margin-bottom: var(--space-2xl);
-    max-width: 600px;
+    max-width: 560px;
     margin-inline: auto;
     font-weight: 300;
+    line-height: 1.7;
   }
 
   .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
     margin-bottom: var(--space-3xl);
+  }
+
+  @media (min-width: 480px) {
+    .hero-actions {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* Ghost button on dark hero bg */
+  :global(.hero-btn-ghost) {
+    color: rgba(255, 255, 255, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  :global(.hero-btn-ghost:hover) {
+    color: #fff !important;
+    border-color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
   }
 
   .hero-keywords {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: var(--space-lg);
+    gap: var(--space-md);
     font-family: var(--font-display);
-    font-size: var(--text-xl);
+    font-size: clamp(1rem, 2.2vw, 1.375rem);
     font-style: italic;
-    color: var(--color-accent);
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.05em;
   }
 
   .dot {
     font-size: 0.5em;
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* ── Scroll indicator ── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .scroll-line {
+    display: block;
+    width: 1px;
+    height: 56px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(1.15); }
+  }
+
+  /* ── Mobile adjustments ── */
+  @media (max-width: 479px) {
+    .hero-title {
+      letter-spacing: 0.04em;
+    }
   }
 </style>

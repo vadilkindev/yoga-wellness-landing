@@ -7,15 +7,15 @@ import Container from './Container.astro';
 <header class="navbar" id="main-nav">
   <Container>
     <div class="navbar-wrapper">
-      <a href="/" class="logo">
+      <a href="/" class="logo" aria-label="Radha - Inicio">
         Radha
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="desktop-nav">
+      <nav class="desktop-nav" aria-label="Navegación principal">
         <ul class="nav-list">
-          {NAV_LINKS.map((link, index) => (
-            <li class={`reveal-up reveal-delay-${index + 1}`}>
+          {NAV_LINKS.map((link) => (
+            <li>
               <a href={link.href} class="nav-link">
                 {link.label}
               </a>
@@ -25,18 +25,280 @@ import Container from './Container.astro';
       </nav>
 
       <!-- CTA -->
-      <div class="nav-cta reveal-up reveal-delay-4">
+      <div class="nav-cta">
         <Button variant="outline" size="sm" href="#booking">Reservá</Button>
       </div>
 
       <!-- Mobile Menu Toggle -->
-      <button class="mobile-toggle" aria-label="Toggle Menu">
+      <button class="mobile-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
   </Container>
+
+  <!-- Mobile drawer -->
+  <nav id="mobile-menu" class="mobile-menu" aria-hidden="true" aria-label="Menú móvil">
+    <ul class="mobile-nav-list">
+      {NAV_LINKS.map((link) => (
+        <li>
+          <a href={link.href} class="mobile-nav-link">{link.label}</a>
+        </li>
+      ))}
+      <li class="mobile-cta">
+        <Button variant="primary" href="#booking" class="mobile-cta-btn">Reservá tu Lugar</Button>
+      </li>
+    </ul>
+  </nav>
 </header>
+
+<style>
+  /* ── Base navbar ── */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(250, 248, 245, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(45, 43, 42, 0.06);
+    transition: box-shadow var(--transition-medium), background-color var(--transition-medium);
+  }
+
+  .navbar.scrolled {
+    background-color: rgba(250, 248, 245, 0.97);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .navbar-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--navbar-height);
+    width: 100%;
+  }
+
+  /* ── Logo ── */
+  .logo {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+  }
+
+  /* ── Desktop nav ── */
+  .desktop-nav {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: block;
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-xl);
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-secondary);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-slow);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* ── Desktop CTA ── */
+  .nav-cta {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .nav-cta {
+      display: block;
+    }
+  }
+
+  /* ── Hamburger ── */
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+  }
+
+  .mobile-toggle:hover {
+    background-color: var(--color-muted);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background-color: var(--color-text-primary);
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform var(--transition-medium), opacity var(--transition-fast);
+  }
+
+  /* open state — X shape */
+  .mobile-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .mobile-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .mobile-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* ── Mobile drawer ── */
+  .mobile-menu {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-medium);
+    background-color: rgba(250, 248, 245, 0.98);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .mobile-menu.open {
+    max-height: 420px;
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
+    gap: var(--space-xs);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: color var(--transition-fast), padding-left var(--transition-medium);
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--color-primary);
+    padding-left: var(--space-sm);
+  }
+
+  .mobile-cta {
+    margin-top: var(--space-lg);
+  }
+
+  :global(.mobile-cta-btn) {
+    width: 100% !important;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  const navbar  = document.getElementById('main-nav')!;
+  const toggle  = navbar.querySelector('.mobile-toggle') as HTMLButtonElement;
+  const menu    = document.getElementById('mobile-menu')!;
+  const links   = menu.querySelectorAll('.mobile-nav-link');
+
+  // Scroll shadow + sticky class
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Toggle mobile menu
+  function openMenu(open: boolean) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    menu.setAttribute('aria-hidden', String(!open));
+    menu.classList.toggle('open', open);
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    openMenu(!isOpen);
+  });
+
+  // Close menu when a link is clicked
+  links.forEach(link => {
+    link.addEventListener('click', () => openMenu(false));
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target as Node)) {
+      openMenu(false);
+    }
+  });
+
+  // Active link highlight on scroll
+  const sections = document.querySelectorAll<HTMLElement>('section[id], header[id]');
+  const navLinks = navbar.querySelectorAll<HTMLAnchorElement>('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+        });
+      }
+    });
+  }, { threshold: 0.4, rootMargin: `-${navbar.offsetHeight}px 0px 0px 0px` });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
 
 <style>
   .navbar {

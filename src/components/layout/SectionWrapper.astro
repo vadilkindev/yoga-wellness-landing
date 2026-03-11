@@ -2,7 +2,7 @@
 interface Props {
   id?: string;
   class?: string;
-  bg?: 'white' | 'secondary' | 'muted' | 'primary';
+  bg?: 'white' | 'secondary' | 'muted' | 'primary' | 'none';
 }
 
 const { id, class: className = '', bg = 'white' } = Astro.props;
@@ -17,9 +17,10 @@ const { id, class: className = '', bg = 'white' } = Astro.props;
     width: 100%;
   }
 
-  .bg-white { background-color: var(--color-bg); }
+  .bg-white  { background-color: var(--color-bg); }
   .bg-secondary { background-color: var(--color-secondary); }
-  .bg-muted { background-color: var(--color-muted); }
+  .bg-muted  { background-color: var(--color-muted); }
+  .bg-none   { background-color: transparent; }
   .bg-primary { 
     background-color: var(--color-primary); 
     color: var(--color-bg);
