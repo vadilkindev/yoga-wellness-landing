@@ -9,18 +9,19 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <Container>
     <div class="footer-grid">
+    <div class="footer-grid">
       <div class="footer-brand reveal-up">
-        <a href="/" aria-label="Radha - Inicio">
-          <img
-            src="/assets/images/logo-blanco-rosa_converted.webp"
-            alt="Radha"
-            class="footer-logo-img"
-            width="220"
-            height="88"
-            loading="lazy"
-          />
-        </a>
-        <p class="tagline">Yoga, Bienestar &amp; Life Coaching</p>
+        <span class="logo">Radha</span>
+        <p class="tagline">Yoga, Bienestar & Life Coaching</p>
+      </div>
+      
+      <div class="footer-links reveal-up reveal-delay-1">
+        <h3 class="footer-title">Menú</h3>
+        <ul class="link-list">
+          {NAV_LINKS.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
       </div>
       
       <div class="footer-links reveal-up reveal-delay-1">
@@ -84,14 +85,15 @@ const year = new Date().getFullYear();
     }
   }
 
-  .footer-logo-img {
-    height: 96px;
-    width: auto;
-    object-fit: contain;
+  .logo {
     display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     margin-bottom: var(--space-sm);
   }
-
   .tagline {
     font-family: var(--font-display);
     font-size: var(--text-lg);

@@ -8,13 +8,7 @@ import Container from './Container.astro';
   <Container>
     <div class="navbar-wrapper">
       <a href="/" class="logo" aria-label="Radha - Inicio">
-        <img
-          src="/assets/images/logo-blanco-rosa_converted.webp"
-          alt="Radha"
-          class="logo-img"
-          width="120"
-          height="48"
-        />
+        Radha
       </a>
 
       <!-- Desktop Nav -->
@@ -90,9 +84,12 @@ import Container from './Container.astro';
 
   /* ── Logo ── */
   .logo {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
   }
 
   .logo-img {
